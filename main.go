@@ -56,71 +56,50 @@ func getMachineMovement(board [][]string) {
 }
 
 func checkWinner(board [][]string) bool {
-
 	// Horizontal wins
-	if board[0][0] == board[0][1] &&
-		board[0][1] == board[0][2] {
+	for i := 0; i < 3; i++ {
+		if board[i][0] == board[i][1] &&
+			board[i][1] == board[i][2] &&
+			board[i][0] != fmt.Sprintf("%d", i*3+1) &&
+			board[i][0] != fmt.Sprintf("%d", i*3+2) &&
+			board[i][0] != fmt.Sprintf("%d", i*3+3) {
 
-		fmt.Println(board[0][0], " WINS!")
-
-		return true
-	}
-
-	if board[1][0] == board[1][1] &&
-		board[1][1] == board[1][2] {
-
-		fmt.Println(board[1][0], " WINS!")
-
-		return true
-	}
-
-	if board[2][0] == board[2][1] &&
-		board[2][1] == board[2][2] {
-
-		fmt.Println(board[0][0], " WINS!")
-
-		return true
+			fmt.Println(board[i][0], " WINS!")
+			return true
+		}
 	}
 
 	// Vertical wins
-	if board[0][0] == board[1][0] &&
-		board[1][0] == board[2][0] {
+	for j := 0; j < 3; j++ {
+		if board[0][j] == board[1][j] &&
+			board[1][j] == board[2][j] &&
+			board[0][j] != fmt.Sprintf("%d", j+1) &&
+			board[0][j] != fmt.Sprintf("%d", j+4) &&
+			board[0][j] != fmt.Sprintf("%d", j+7) {
 
-		fmt.Println(board[0][0], " WINS!")
-
-		return true
-	}
-
-	if board[0][1] == board[1][1] &&
-		board[1][1] == board[2][1] {
-
-		fmt.Println(board[0][1], " WINS!")
-
-		return true
-	}
-
-	if board[0][2] == board[1][2] &&
-		board[1][2] == board[2][2] {
-
-		fmt.Println(board[0][2], " WINS!")
-
-		return true
+			fmt.Println(board[0][j], " WINS!")
+			return true
+		}
 	}
 
 	// Diagonal wins
 	if board[0][0] == board[1][1] &&
-		board[1][1] == board[2][2] {
+		board[1][1] == board[2][2] &&
+		board[0][0] != "1" &&
+		board[0][0] != "5" &&
+		board[0][0] != "9" {
 
 		fmt.Println(board[0][0], " WINS!")
-
 		return true
 	}
 
-	if board[2][2] == board[1][1] &&
-		board[1][1] == board[0][0] {
+	if board[0][2] == board[1][1] &&
+		board[1][1] == board[2][0] &&
+		board[0][2] != "3" &&
+		board[0][2] != "5" &&
+		board[0][2] != "7" {
 
-		fmt.Println(board[0][0], " WINS!")
-
+		fmt.Println(board[0][2], " WINS!")
 		return true
 	}
 
