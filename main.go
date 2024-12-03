@@ -6,6 +6,8 @@ import (
 )
 
 func printBoard(board [][]string) {
+	fmt.Println("")
+
 	for i := 0; i < len(board); i++ {
 		fmt.Println(board[i][0], "|", board[i][1], "|", board[i][2])
 	}
@@ -53,10 +55,84 @@ func getMachineMovement(board [][]string) {
 	}
 }
 
+func checkWinner(board [][]string) bool {
+
+	// Horizontal wins
+	if board[0][0] == board[0][1] &&
+		board[0][1] == board[0][2] {
+
+		fmt.Println(board[0][0], " WINS!")
+
+		return true
+	}
+
+	if board[1][0] == board[1][1] &&
+		board[1][1] == board[1][2] {
+
+		fmt.Println(board[1][0], " WINS!")
+
+		return true
+	}
+
+	if board[2][0] == board[2][1] &&
+		board[2][1] == board[2][2] {
+
+		fmt.Println(board[0][0], " WINS!")
+
+		return true
+	}
+
+	// Vertical wins
+	if board[0][0] == board[1][0] &&
+		board[1][0] == board[2][0] {
+
+		fmt.Println(board[0][0], " WINS!")
+
+		return true
+	}
+
+	if board[0][1] == board[1][1] &&
+		board[1][1] == board[2][1] {
+
+		fmt.Println(board[0][1], " WINS!")
+
+		return true
+	}
+
+	if board[0][2] == board[1][2] &&
+		board[1][2] == board[2][2] {
+
+		fmt.Println(board[0][2], " WINS!")
+
+		return true
+	}
+
+	// Diagonal wins
+	if board[0][0] == board[1][1] &&
+		board[1][1] == board[2][2] {
+
+		fmt.Println(board[0][0], " WINS!")
+
+		return true
+	}
+
+	if board[2][2] == board[1][1] &&
+		board[1][1] == board[0][0] {
+
+		fmt.Println(board[0][0], " WINS!")
+
+		return true
+	}
+
+	return false
+}
+
 func main() {
 	board := [][]string{{"1", "2", "3"}, {"4", "5", "6"}, {"7", "8", "9"}}
 
-	getUserMovement(board)
-	getMachineMovement(board)
-	printBoard(board)
+	for !checkWinner(board) {
+		getUserMovement(board)
+		getMachineMovement(board)
+	}
+
 }
